@@ -3,7 +3,7 @@
 <body bgcolor="#b5ffeb">
   <br>
   <button onclick="retrieve()">Get</button>
-  <input class="input" id="url2" type="text" name="link" value="https://pastebin.com/FrJPEEwY">
+  <input class="input" id="url" type="text" name="link" value="https://pastebin.com/FrJPEEwY">
   <br>
   <pr id="debug">some text</pr>
 
@@ -11,30 +11,31 @@
     var counter = document.getElementById("test").innerHTML;
 
     function retrieve() {
-      //TODO: write error message when paste is from a non-pro account
-      //do it via request.status = 0
-      var url = document.getElementById("url2").value;
+      var url = document.getElementById("url").value;
       var newUrl;
-      var tempText
+      var tempText;
       const regex = /http(?:s)?:\/\/pastebin.com\/(?:raw\/)?([A-z0-9]*)/;
 
       if ((m = regex.exec(url)) !== null) {
-        newUrl = "https://pastebin.com/raw/" + m[1].toString()
+        var request = makeHttpObject();
+        newUrl = "https://pastebin.com/raw/" + m[1].toString();
+        request.open("GET", newUrl, true);
+        request.send(null);
+        request.onreadystatechange = function() {
+
+          if (request.readyState == 4) {
+            if (request.status == 0) {
+              alert("CORS not enabled.")
+            } else {
+              display_txt = request.responseText.replace(/\n/g, "<br />");
+              document.getElementById("debug").innerHTML = display_txt;
+            }
+          }
+        };
+      } 
+      else {
+        alert("This is not a pastebin link!");
       }
-      
-      var request = makeHttpObject();
-      request.open("GET", newUrl, true);
-
-      request.send(null);
-      request.onreadystatechange = function() {
-
-        document.getElementById("debug").innerHTML = request.responseText
-        if (request.readyState == 4)
-          tempText = request.responseText;
-        //document.getElementById("debug").innerHTML = request.responseText.toString();
-      };
-
-      //document.getElementById("debug").innerHTML = newUrl;
     }
 
     function makeHttpObject() {
@@ -47,7 +48,6 @@
       try {
         return new ActiveXObject("Microsoft.XMLHTTP");
       } catch (error) {}
-
       throw new Error("Could not create HTTP request object.");
     }
   </script>
