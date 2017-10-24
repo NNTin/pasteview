@@ -5,37 +5,50 @@
   <button onclick="retrieve()">Get</button>
   <input class="input" id="url" type="text" name="link" value="https://pastebin.com/FrJPEEwY">
   <br>
-  <pr id="debug">some text</pr>
+  <div>
+    <pre id="debug">some text</pre>
+  </div>
+  
 
   <script>
-    var counter = document.getElementById("test").innerHTML;
-
     function retrieve() {
       var url = document.getElementById("url").value;
-      var newUrl;
-      var tempText;
-      const regex = /(?:http(?:s)?:\/\/)?pastebin.com\/(?:raw\/)?([A-z0-9]*)/;
-
-      if ((m = regex.exec(url)) !== null) {
+      if (isPastebinUrl(url)) {
         var request = makeHttpObject();
-        newUrl = "https://pastebin.com/raw/" + m[1].toString();
+        newUrl = getPastebinID(url);
+
         request.open("GET", newUrl, true);
         request.send(null);
         request.onreadystatechange = function() {
 
           if (request.readyState == 4) {
             if (request.status == 0) {
-              alert("CORS not enabled.")
-            } else {
-              display_txt = request.responseText.replace(/\n/g, "<br />");
+              alert("CORS not enabled.");
+            } else if (request.status == 200) {
+              //display_txt = request.responseText.replace(/\n/g, "<br />");
+              display_txt = request.responseText
               document.getElementById("debug").innerHTML = display_txt;
+            } else {
+              alert("Unhandled status");
             }
           }
         };
-      } 
-      else {
-        alert("This is not a pastebin link!");
       }
+    }
+    
+    function isPastebinUrl(url) {
+      const regex = /(?:http(?:s)?:\/\/)?pastebin.com\/(?:raw\/)?([A-z0-9]*)/;
+      if ((m = regex.exec(url)) !== null) return true;
+      else {
+        alert("This is not a pastebin URL!");
+        return false;
+      }
+    }
+
+    function getPastebinID(url) {
+      const regex = /(?:http(?:s)?:\/\/)?pastebin.com\/(?:raw\/)?([A-z0-9]*)/;
+      m = regex.exec(url);
+      return "https://pastebin.com/raw/" + m[1].toString();
     }
 
     function makeHttpObject() {
@@ -50,5 +63,6 @@
       } catch (error) {}
       throw new Error("Could not create HTTP request object.");
     }
+
   </script>
 </body>
