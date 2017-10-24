@@ -14,7 +14,7 @@
       var url = document.getElementById("url").value;
       var newUrl;
       var tempText;
-      const regex = /http(?:s)?:\/\/pastebin.com\/(?:raw\/)?([A-z0-9]*)/;
+      const regex = /(?:http(?:s)?:\/\/)?pastebin.com\/(?:raw\/)?([A-z0-9]*)/;
 
       if ((m = regex.exec(url)) !== null) {
         var request = makeHttpObject();
