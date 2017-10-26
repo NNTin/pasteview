@@ -1,7 +1,21 @@
 const regex = /(?:http(?:s)?:\/\/)?pastebin.com\/(?:raw\/)?([A-z0-9]*)/;
 
 $(document).ready(function() {
-  retrieve();
+  //retrieve();
+  //document.getElementById("pastebinPaste").innerHTML = 
+  var url_string = document.URL;
+  var url = new URL(url_string);
+  var paste = url.searchParams.get("paste");
+  
+  
+  document.getElementById("pastebinPaste").innerHTML = paste
+  if (paste == "") {
+	  alert("no paste para")
+  }
+  else {
+	  document.getElementById("url").value = "https://pastebin.com/" + paste
+	  retrieve()
+  }
 });
 
 function retrieve() {
