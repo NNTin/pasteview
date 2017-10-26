@@ -13,6 +13,7 @@ $(document).ready(function() {
 	  alert("no paste para")
   }
   else {
+	  //https://pastebin.com/FrJPEEwY
 	  document.getElementById("url").value = "https://pastebin.com/" + paste
 	  retrieve()
   }
