@@ -2,22 +2,37 @@
 <html>
   <head>
     <link rel="stylesheet" href="css/mainpage.css" />
+	<script src='https://ajax.googleapis.com/ajax/libs/angularjs/1.4.1/angular.min.js'></script>
     <meta charset="UTF-8">
     <title>NNTin's Pastebin-Viewer</title>
   </head>
 
   <body>
+  
+  <header ng-app="textSizeSlider">
+  <!-- Custom AngularJS Directive -->
+  <text-size-slider min="12" max="24" unit="px" value="18" step="0">
+  <!-- END of Custom AngularJS Directive -->
+  </text-size-slider>
+</header>
+  
     <div id="container">
       <div id="userconsole">
+	    
         <button onclick="retrieve()">Get</button>
         <input class="input" id="url" type="text" name="link">
       </div>
       <div id="preview">
-        <p id="debug">debug text</p>
-        <p id="pastebinPaste">some text</p>
+	    
+          <p id="debug">debug text</p>
+          <p id="pastebinPaste">some text</p>
+	    
       </div>
     </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script type="javascript" src="/lib/angular-text-slider.min.js"></script>
     <script src="js/main.js"></script>
+	<script src="js/textslider.js"></script>
+	
   </body>
 </html>
