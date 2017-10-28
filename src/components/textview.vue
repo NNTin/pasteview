@@ -3,7 +3,10 @@
     <p v-html=pastebinText
        v-bind:style="{ fontSize: textFormat.textSize/2 + 'px',
                        paddingLeft: textFormat.columnSize + '%',
-                       paddingRight: textFormat.columnSize + '%'}"></p>
+                       paddingRight: textFormat.columnSize + '%',
+                       backgroundColor: textFormat.colorsBackground.hex,
+                       color: textFormat.colorsText.hex
+                        }"></p>
 
   </div>
 </template>
@@ -15,8 +18,10 @@
       textFormat: {
         type: Object,
         default: {
-          textSize: 75,
-          columnSize: 0
+          textSize: -1,
+          columnSize: -1,
+          colorsBackground: {hex: '#FAA3FF'},
+  				colorsText: {hex: '#B5F8EC'}
         }
       }
     },
