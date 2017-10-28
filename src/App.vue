@@ -4,11 +4,10 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-align: left;
-    margin-top: 60px;  }">
+    margin-top: 60px; }">
+
     <top @input="onInputChild" :pastebinURL="pastebinURL"></top>
     <textview @pastebinURLChange="onPastebinURLChange" :textFormat="textFormat"></textview>
-
-
     <!--<test :textFormat="textFormat"></test>-->
 
   </div>
@@ -18,6 +17,8 @@
 import textview from './components/textview'
 import test from './components/test'
 import top from './components/top'
+
+
 export default {
   name: 'app',
   components: {
