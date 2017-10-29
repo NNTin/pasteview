@@ -15,29 +15,24 @@
 		</div>
 		<div id="chrome-color">
 			<label id="description">Text Slider</label>
-			<vue-slider :tooltip=false v-on:input="textFormatChange" :min="25" :max="75" width="300%" v-model="textFormat.textSize"></vue-slider>
+			<vue-slider :show="showSlider" :tooltip=false v-on:input="textFormatChange" :min="25" :max="75" width="300%" v-model="textFormat.textSize"></vue-slider>
 		</div>
 		<div id="buttons">
-			<button v-on:click="save">Save</button>
-			<button v-on:click="reset">Reset</button>
-
+			<button title="Save slider and color settings" v-on:click="save">Save</button>
+			<button title="Reset settings to default" v-on:click="reset">Reset</button>
 		</div>
-		<p v-bind:style="{
-										backgroundColor: textFormat.colorsBackground.hex,
-										color: textFormat.colorsText.hex
-										 }">test text</p>
 
-		<label><a :href="pastebinURL">{{pastebinURL}}</a></label>
+		<!--<label><a :href="pastebinURL">{{pastebinURL}}</a></label>-->
 
 		<div id="textArea">
 			<div id="column1">
-		     <vue-slider :tooltip=false v-on:input="textFormatChange" :min="0" :max="35" v-model="textFormat.columnSize" :speed="0"></vue-slider>
+		     <vue-slider :show="showSlider" :tooltip=false v-on:input="textFormatChange" :min="0" :max="35" v-model="textFormat.columnSize" :speed="0"></vue-slider>
 	    </div>
 			<div id="column2">
 				<label>&nbsp;</label>
 			</div>
 	    <div id="column3">
-				<vue-slider :reverse=true :tooltip=false v-on:input="textFormatChange" :min="0" :max="35" v-model="textFormat.columnSize" :speed="0"></vue-slider>
+				<vue-slider :show="showSlider" :reverse=true :tooltip=false v-on:input="textFormatChange" :min="0" :max="35" v-model="textFormat.columnSize" :speed="0"></vue-slider>
 		    <!--<vue-slider :tooltip=false :min="65" :max="100" v-model="columnSize2" :speed="0"></vue-slider>-->
 	    </div>
 		</div>
@@ -65,7 +60,11 @@ export default {
 		pastebinURL: {
 			type: String,
 			default: ''
-		}
+		},
+		showSlider: {
+			type: Boolean,
+			default: true
+			}
 	},
 
 	data () {
@@ -73,8 +72,8 @@ export default {
 			textFormat: {
 				textSize: 40,
 				columnSize: 20,
-				colorsBackground: {hex: '#FFE8E8'},
-				colorsText: {hex: '#000909'}
+				colorsBackground: {hex: '#FFFFFF'},
+				colorsText: {hex: '#000000'}
 
 			}
 		}
@@ -94,8 +93,8 @@ export default {
 		reset: function () {
 			this.textFormat.textSize = 40
 			this.textFormat.columnSize = 20
-			this.textFormat.colorsBackground.hex = '#FFE8E8'
-			this.textFormat.colorsText.hex = '#000909'
+			this.textFormat.colorsBackground.hex = '#FFFFFF'
+			this.textFormat.colorsText.hex = '#000000'
 
 			localStorage.setItem('textSize', this.textFormat.textSize)
 			localStorage.setItem('columnSize', this.textFormat.columnSize)
@@ -142,5 +141,9 @@ export default {
 		text-align: center;
 		line-height: 150%;
 		font-size: .85em;
+	}
+	div#textArea{
+		padding-top: 10px;
+		padding-bottom: 10px;
 	}
 </style>

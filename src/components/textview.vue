@@ -1,12 +1,6 @@
 <template>
   <div class=textviewcss>
-    <p v-html=pastebinText
-       v-bind:style="{ fontSize: textFormat.textSize/2 + 'px',
-                       paddingLeft: textFormat.columnSize + '%',
-                       paddingRight: textFormat.columnSize + '%',
-                       backgroundColor: textFormat.colorsBackground.hex,
-                       color: textFormat.colorsText.hex
-                        }"></p>
+    <p v-html=pastebinText :style="getStyle"></p>
     <!-- backgroundColor is throwing an error, no idea how to fix -->
 
   </div>
@@ -40,7 +34,7 @@
       var url = new URL(url_string);
       var paste = url.searchParams.get("paste");
       if (!paste) {
-        this.pastebinText = 'No pastebin URL provided.'
+        this.pastebinText = "You haven't provided a paste.".replace(/\n/g, "<br />")
       }
       else {
         var new_url_string = 'https://pastebin.com/raw/' + paste
@@ -59,6 +53,16 @@
 
     },
     computed: {
+      getStyle: {
+        get: function () {
+          return { fontSize: this.textFormat.textSize/2 + 'px',
+                   paddingLeft: this.textFormat.columnSize + '%',
+                   paddingRight: this.textFormat.columnSize + '%',
+                   backgroundColor: this.textFormat.colorsBackground.hex,
+                   color: this.textFormat.colorsText.hex
+          }
+        }
+      }
     }
   }
 </script>
