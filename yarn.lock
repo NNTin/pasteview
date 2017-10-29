@@ -4295,6 +4295,10 @@ vue-gh-pages@^1.6.2:
     ncp "^2.0.0"
     rimraf "^2.6.1"
 
+vue-head@^2.0.11:
+  version "2.0.11"
+  resolved "https://registry.yarnpkg.com/vue-head/-/vue-head-2.0.11.tgz#d063b87d99e8898002c4967f558f82437b23f72a"
+
 vue-hot-reload-api@^2.2.0:
   version "2.2.0"
   resolved "https://registry.yarnpkg.com/vue-hot-reload-api/-/vue-hot-reload-api-2.2.0.tgz#9a21b35ced3634434a43ee80efb7350ea8fb206d"
