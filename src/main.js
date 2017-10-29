@@ -3,8 +3,10 @@
 import Vue from 'vue'
 import vueResource from 'vue-resource'
 import App from './App'
+import VueHead from 'vue-head'
 
 Vue.use(vueResource)
+Vue.use(VueHead)
 
 //
 /* eslint-disable no-new */

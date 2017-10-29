@@ -16,6 +16,34 @@ import top from './components/top'
 
 export default {
   name: 'app',
+  head: {
+    title: {
+      inner: "PasteView"
+    },
+    meta: [
+      { name: 'application-name', content: 'PasteView' },
+      { name: 'description', content: 'View pastes from Pastebin', id: 'desc' }, // id to replace intead of create element
+      // ...
+      // Twitter
+      { name: 'twitter:title', content: 'PasteView' },
+      // with shorthand
+      { n: 'twitter:description', c: 'View pastes from Pastebin'},
+      // ...
+      // Google+ / Schema.org
+      { itemprop: 'name', content: 'PasteView' },
+      { itemprop: 'description', content: 'View pastes from Pastebin' },
+      // ...
+      // Facebook / Open Graph
+      { property: 'og:title', content: 'PasteView' },
+      // with shorthand
+      { p: 'og:image', c: 'https://i.imgur.com/N0u1eS0.png' },
+      { p: 'og:type', c: 'article' },
+      { p: 'og:url', c: 'nntin.github.io/pasteview/' },
+      { p: 'og:description', c: 'View pastes from Pastebin' }
+
+      // ...
+    ]
+  },
   components: {
     top,
     textview,
