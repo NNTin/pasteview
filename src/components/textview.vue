@@ -7,6 +7,7 @@
                        backgroundColor: textFormat.colorsBackground.hex,
                        color: textFormat.colorsText.hex
                         }"></p>
+    <!-- backgroundColor is throwing an error, no idea how to fix -->
 
   </div>
 </template>

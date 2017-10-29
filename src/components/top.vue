@@ -4,8 +4,24 @@
 		<a id="githubmark" href="https://github.com/nntin/pasteview">
 		  <img src="../assets/githubmark.png">
 		</a>
-		<div id="chrome-color"><chrome-picker v-model="textFormat.colorsBackground"/></div>
-		<div id="chrome-color"><chrome-picker v-model="textFormat.colorsText"/></div>
+
+		<div id="chrome-color">
+			<label id="description">Background Color</label>
+			<chrome-picker v-model="textFormat.colorsBackground"/>
+		</div>
+		<div id="chrome-color">
+			<label id="description">Text Color</label>
+			<chrome-picker v-model="textFormat.colorsText"/>
+		</div>
+		<div id="chrome-color">
+			<label id="description">Text Slider</label>
+			<vue-slider :tooltip=false v-on:input="textFormatChange" :min="25" :max="75" width="300%" v-model="textFormat.textSize"></vue-slider>
+		</div>
+		<div id="buttons">
+			<button v-on:click="save">Save</button>
+			<button v-on:click="reset">Reset</button>
+
+		</div>
 		<p v-bind:style="{
 										backgroundColor: textFormat.colorsBackground.hex,
 										color: textFormat.colorsText.hex
@@ -13,7 +29,6 @@
 
 		<label><a :href="pastebinURL">{{pastebinURL}}</a></label>
 
-		<vue-slider :tooltip=false v-on:input="textFormatChange" :min="25" :max="75" width="50%" v-model="textFormat.textSize"></vue-slider>
 		<div id="textArea">
 			<div id="column1">
 		     <vue-slider :tooltip=false v-on:input="textFormatChange" :min="0" :max="35" v-model="textFormat.columnSize" :speed="0"></vue-slider>
@@ -31,6 +46,12 @@
 <script>
 import vueSlider from 'vue-slider-component'
 import { Chrome } from 'vue-color'
+import Vue from 'vue'
+
+
+
+
+
 
 
 
@@ -52,8 +73,8 @@ export default {
 			textFormat: {
 				textSize: 40,
 				columnSize: 20,
-				colorsBackground: {hex: '#FFDADA'},
-				colorsText: {hex: '#180F38'}
+				colorsBackground: {hex: '#FFE8E8'},
+				colorsText: {hex: '#000909'}
 
 			}
 		}
@@ -61,6 +82,27 @@ export default {
 	methods: {
 		textFormatChange: function(){
 			this.$emit('input', this.textFormat);
+		},
+		save: function (){
+			localStorage.setItem('textSize', this.textFormat.textSize)
+			localStorage.setItem('columnSize', this.textFormat.columnSize)
+			localStorage.setItem('colorsBackgroundHex', this.textFormat.colorsBackground.hex)
+			localStorage.setItem('colorsTextHex', this.textFormat.colorsText.hex)
+
+			console.log(localStorage)
+ 		},
+		reset: function () {
+			this.textFormat.textSize = 40
+			this.textFormat.columnSize = 20
+			this.textFormat.colorsBackground.hex = '#FFE8E8'
+			this.textFormat.colorsText.hex = '#000909'
+
+			localStorage.setItem('textSize', this.textFormat.textSize)
+			localStorage.setItem('columnSize', this.textFormat.columnSize)
+			localStorage.setItem('colorsBackgroundHex', this.textFormat.colorsBackground.hex)
+			localStorage.setItem('colorsTextHex', this.textFormat.colorsText.hex)
+
+
 		}
 	},
 	computed: {
@@ -72,6 +114,14 @@ export default {
 		// 		this.textFormat.columnSize = 100 - someNumber
 		// 	}
 		// }
+	},
+	created: function () {
+		if(localStorage.textSize){
+			this.textFormat.textSize = localStorage.getItem('textSize')
+			this.textFormat.columnSize = localStorage.getItem('columnSize')
+			this.textFormat.colorsBackground.hex = localStorage.getItem('colorsBackgroundHex')
+			this.textFormat.colorsText.hex = localStorage.getItem('colorsTextHex')
+		}
 	}
 }
 </script>
@@ -81,10 +131,16 @@ export default {
 		float:left;
 		width:33%;
 	}
-	div#chrome-color{
+	div#chrome-color, div#buttons{
 		display: inline-block;
 	}
 	a#githubmark{
-	float:right;
+		float:right;
+	}
+	label#discription{
+		display: block;
+		text-align: center;
+		line-height: 150%;
+		font-size: .85em;
 	}
 </style>
