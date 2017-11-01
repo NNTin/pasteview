@@ -193,7 +193,8 @@ export default {
 			  fontSize: '12px',
 			  background: backgroundColor,
 			  padding: '10px 20px 10px 20px',
-			  border: 'solid #000000 3px'
+			  border: 'solid #000000 3px',
+				marginTop: '5px'
 			}
 		}
 
@@ -248,7 +249,6 @@ export default {
 		display: block;
 		text-align: center;
 		line-height: 150%;
-		font-size: .85em;
 	}
 	div#textArea{
 		padding-top: 10px;
