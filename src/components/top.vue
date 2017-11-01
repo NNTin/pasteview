@@ -20,6 +20,21 @@
 		<div id="buttons">
 			<button title="Save slider and color settings" v-on:click="save">Save</button>
 			<button title="Reset settings to default" v-on:click="reset">Reset</button>
+
+			<button title="Get random colors for background and text" v-on:click="random">Random</button>
+
+			<button title="Set color" v-on:click="setColor('#FFFFFF','#A7660C')">Set color</button>
+			<button title="Set color" v-on:click="setColor('#FFFFFF','#A70C0C')">Set color</button>
+			<button title="Set color" v-on:click="setColor('#FFFFFF','#770CA7')">Set color</button>
+
+			<button title="Set color" v-on:click="setColor('#FF9393','#FFFFFF')">Set color</button>
+			<button title="Set color" v-on:click="setColor('#C79347','#FFFFFF')">Set color</button>
+			<button title="Set color" v-on:click="setColor('#4793C7','#FFFFFF')">Set color</button>
+			<button title="Set color" v-on:click="setColor('#383838','#FFFFFF')">Set color</button>
+
+			<button title="Set color" v-on:click="setColor('#FFBABA','#000000')">Set color</button>
+			<button title="Set color" v-on:click="setColor('#BAFF71','#000000')">Set color</button>
+			<button title="Set color" v-on:click="setColor('#FF83FD','#000000')">Set color</button>
 		</div>
 
 		<label><a :href="pastebinURL">{{pastebinURL}}</a></label>
@@ -120,11 +135,6 @@ export default {
 			localStorage.setItem('columnSize', this.textFormat.columnSize)
 			localStorage.setItem('colorsBackgroundHex', this.textFormat.colorsBackground.hex)
 			localStorage.setItem('colorsTextHex', this.textFormat.colorsText.hex)
-			console.dir(this.textFormat.colorsText.hex)
-			console.dir(this.textFormat.colorsText)
-
-
-
 			//console.log(localStorage)
  		},
 		reset: function () {
@@ -145,20 +155,31 @@ export default {
 			localStorage.setItem('columnSize', this.textFormat.columnSize)
 			localStorage.setItem('colorsBackgroundHex', this.textFormat.colorsBackground.hex)
 			localStorage.setItem('colorsTextHex', this.textFormat.colorsText.hex)
-
-
-
+		},
+		random: function () {
+			this.textFormat.colorsBackground =
+			{
+				hex: '#'+Math.floor(Math.random()*16777215).toString(16),
+				a: 1
+			}
+			this.textFormat.colorsText =
+			{
+				hex: '#'+Math.floor(Math.random()*16777215).toString(16),
+				a: 1
+			}
+		},
+		setColor: function (backgroundColor, textColor) {
+			this.textFormat.colorsBackground =
+			{
+				hex: backgroundColor,
+				a: 1
+			}
+			this.textFormat.colorsText =
+			{
+				hex: textColor,
+				a: 1
+			}
 		}
-	},
-	computed: {
-		// columnSize2: {
-		// 	get: function() {
-		// 		return 100 - this.textFormat.columnSize;
-		// 	},
-		// 	set: function (someNumber) {
-		// 		this.textFormat.columnSize = 100 - someNumber
-		// 	}
-		// }
 	},
 	created: function () {
 		if(localStorage.textSize){

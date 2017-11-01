@@ -17,7 +17,6 @@ It only accepts pastes from pastebin **pro** accounts. (Pastes from pastebin pro
 ## Todo's:
 
 * touch up the style, especially for mobile users
-* in addition to reset, add custom settings (light/dark/... mode)
 
 ## Build Setup
 
