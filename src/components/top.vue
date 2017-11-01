@@ -1,9 +1,14 @@
 <template>
 	<div>
-
 		<a id="githubmark" href="https://github.com/nntin/pasteview">
-		  <img src="../assets/githubmark.png">
+			<img src="../assets/githubmark.png">
 		</a>
+		<div v-show="pastebinURL">
+		<label>Displaying following paste:<a :href="pastebinURL">{{pastebinURL}}</a></label>
+		<label>Word count: {{wordCount}}</label>
+		<br/>
+		<br/>
+		</div>
 
 		<div id="chrome-color">
 			<label id="description">Background Color</label>
@@ -13,31 +18,27 @@
 			<label id="description">Text Color</label>
 			<chrome-picker v-model="textFormat.colorsText"/>
 		</div>
-		<div id="chrome-color">
+		<div id="text-slider">
 			<label id="description">Text Slider</label>
 			<vue-slider :show="showSlider" :tooltip=false v-on:input="textFormatChange" :min="25" :max="75" width="300%" v-model="textFormat.textSize"></vue-slider>
 		</div>
 		<div id="buttons">
-			<button title="Save slider and color settings" v-on:click="save">Save</button>
-			<button title="Reset settings to default" v-on:click="reset">Reset</button>
+			<button title="Save slider and color settings" :style="getSaveButtonStyle" v-on:click="save">Save</button>
+			<button title="Reset settings to default" :style="getButtonStyle('#FFFFFF','#000000')" v-on:click="reset">Reset</button>
+			<button title="Set color" :style="getButtonStyle('#FFFFFF','#A7660C')" v-on:click="setColor('#FFFFFF','#A7660C')">Set color</button>
+			<button title="Set color" :style="getButtonStyle('#FFFFFF','#A70C0C')" v-on:click="setColor('#FFFFFF','#A70C0C')">Set color</button>
+			<button title="Set color" :style="getButtonStyle('#FFFFFF','#770CA7')" v-on:click="setColor('#FFFFFF','#770CA7')">Set color</button>
 
-			<button title="Get random colors for background and text" v-on:click="random">Random</button>
+			<button title="Set color" :style="getButtonStyle('#FF9393','#FFFFFF')" v-on:click="setColor('#FF9393','#FFFFFF')">Set color</button>
+			<button title="Set color" :style="getButtonStyle('#C79347','#FFFFFF')" v-on:click="setColor('#C79347','#FFFFFF')">Set color</button>
+			<button title="Set color" :style="getButtonStyle('#4793C7','#FFFFFF')" v-on:click="setColor('#4793C7','#FFFFFF')">Set color</button>
+			<button title="Set color" :style="getButtonStyle('#383838','#FFFFFF')" v-on:click="setColor('#383838','#FFFFFF')">Set color</button>
 
-			<button title="Set color" v-on:click="setColor('#FFFFFF','#A7660C')">Set color</button>
-			<button title="Set color" v-on:click="setColor('#FFFFFF','#A70C0C')">Set color</button>
-			<button title="Set color" v-on:click="setColor('#FFFFFF','#770CA7')">Set color</button>
-
-			<button title="Set color" v-on:click="setColor('#FF9393','#FFFFFF')">Set color</button>
-			<button title="Set color" v-on:click="setColor('#C79347','#FFFFFF')">Set color</button>
-			<button title="Set color" v-on:click="setColor('#4793C7','#FFFFFF')">Set color</button>
-			<button title="Set color" v-on:click="setColor('#383838','#FFFFFF')">Set color</button>
-
-			<button title="Set color" v-on:click="setColor('#FFBABA','#000000')">Set color</button>
-			<button title="Set color" v-on:click="setColor('#BAFF71','#000000')">Set color</button>
-			<button title="Set color" v-on:click="setColor('#FF83FD','#000000')">Set color</button>
+			<button title="Set color" :style="getButtonStyle('#FFBABA','#000000')" v-on:click="setColor('#FFBABA','#000000')">Set color</button>
+			<button title="Set color" :style="getButtonStyle('#BAFF71','#000000')" v-on:click="setColor('#BAFF71','#000000')">Set color</button>
+			<button title="Set color" :style="getButtonStyle('#83BDFF','#000000')" v-on:click="setColor('#83BDFF','#000000')">Set color</button>
 		</div>
 
-		<label><a :href="pastebinURL">{{pastebinURL}}</a></label>
 
 		<div id="textArea">
 			<div id="column1">
@@ -67,6 +68,10 @@ export default {
 		pastebinURL: {
 			type: String,
 			default: ''
+		},
+		wordCount: {
+			type: Number,
+			default: 0
 		},
 		showSlider: {
 			type: Boolean,
@@ -156,18 +161,6 @@ export default {
 			localStorage.setItem('colorsBackgroundHex', this.textFormat.colorsBackground.hex)
 			localStorage.setItem('colorsTextHex', this.textFormat.colorsText.hex)
 		},
-		random: function () {
-			this.textFormat.colorsBackground =
-			{
-				hex: '#'+Math.floor(Math.random()*16777215).toString(16),
-				a: 1
-			}
-			this.textFormat.colorsText =
-			{
-				hex: '#'+Math.floor(Math.random()*16777215).toString(16),
-				a: 1
-			}
-		},
 		setColor: function (backgroundColor, textColor) {
 			this.textFormat.colorsBackground =
 			{
@@ -179,7 +172,17 @@ export default {
 				hex: textColor,
 				a: 1
 			}
+		},
+		getButtonStyle: function (backgroundColor, textColor) {
+			return {
+			  color: textColor,
+			  fontSize: '15px',
+			  background: backgroundColor,
+			  padding: '10px 20px 10px 20px',
+			  border: 'solid #000000 3px'
+			}
 		}
+
 	},
 	created: function () {
 		if(localStorage.textSize){
@@ -196,6 +199,19 @@ export default {
 				a: 1
 			}
 		}
+	},
+	computed: {
+		getSaveButtonStyle: {
+			get: function () {
+				return {
+				  color: this.textFormat.colorsText.hex,
+				  fontSize: '15px',
+				  background: this.textFormat.colorsBackground.hex,
+				  padding: '10px 20px 10px 20px',
+				  border: 'solid #000000 3px'
+				}
+			}
+		}
 	}
 }
 </script>
@@ -205,7 +221,7 @@ export default {
 		float:left;
 		width:33%;
 	}
-	div#chrome-color, div#buttons{
+	div#chrome-color, div#text-slider, div#buttons{
 		display: inline-block;
 	}
 	a#githubmark{
