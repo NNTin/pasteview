@@ -1,5 +1,5 @@
 <template>
-  <div id="app" :style="getStyle">
+  <div class="app" :style="getStyle">
 
     <top v-show="showTop" @input="onInputChild" :pastebinURL="pastebinURL" :wordCount="wordCount" :showSlider="showTop"></top>
     <button v-on:click="toggleShowTop" v-show="!showTop">configure</button>
@@ -92,12 +92,15 @@ export default {
 </script>
 
 <style>
-div#app{
+* {
+    margin: 0;
+}
+
+.app{
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: left;
-  margin-top: 60px;
 }
 
 
