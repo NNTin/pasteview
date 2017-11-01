@@ -16,9 +16,7 @@ It only accepts pastes from pastebin **pro** accounts. (Pastes from pastebin pro
 
 ## Todo's:
 
-* help/default text when no paste or non-pro paste was provided
 * touch up the style, especially for mobile users
-* add error message when paste is from a non-pro account
 * in addition to reset, add custom settings (light/dark/... mode)
 * fix [vue-color](https://xiaokaike.github.io/vue-color/) not correctly jumping when clicking reset button
 

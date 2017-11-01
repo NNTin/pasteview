@@ -22,7 +22,11 @@
     },
     data() {
       return {
-        pastebinText: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.',
+        pastebinText: 'The paste you provided is invalid.\n\
+Either the paste does not exist on Pastebin or the paste was submitted from a non-pro Pastebin account.\n\n\
+Example usage:\n<a href="https://pastebin.com/32z9wKpi">https://pastebin.com/32z9wKpi</a>\n\
+-->\n\
+<a href="https://nntin.github.io/pasteview/?paste=32z9wKpi">https://nntin.github.io/pasteview/?paste=32z9wKpi</a>'.replace(/\n/g, "<br />"),
         pastebinURL: 'https://pastebin.com/raw/FrJPEEwY'
       }
     },
@@ -34,7 +38,17 @@
       var url = new URL(url_string);
       var paste = url.searchParams.get("paste");
       if (!paste) {
-        this.pastebinText = "You haven't provided a paste.".replace(/\n/g, "<br />")
+        this.pastebinText =
+'Goal of project: Make reading pastes from Pastebin more enjoyable.\n\n\
+Functionality:\n\
+* customize reading area\n\
+* customize font size\n\
+* customize background and font color\n\
+* save settings (on page reload you have your old settings) and reset settings\n\
+* show/hide settings\n\n\
+Example usage:\n<a href="https://pastebin.com/32z9wKpi">https://pastebin.com/32z9wKpi</a>\n\
+-->\n\
+<a href="https://nntin.github.io/pasteview/?paste=32z9wKpi">https://nntin.github.io/pasteview/?paste=32z9wKpi</a>'.replace(/\n/g, "<br />")
       }
       else {
         var new_url_string = 'https://pastebin.com/raw/' + paste
@@ -48,6 +62,9 @@
             else {
               console.log('Unhandled status')
             }
+          },
+          function(error) {
+            console.log('Error: Paste is invalid or it is a non-pro paste.')
           })
       }
 
