@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div id="app" :style="getStyle">
 
     <top v-show="showTop" @input="onInputChild" :pastebinURL="pastebinURL" :wordCount="wordCount" :showSlider="showTop"></top>
     <button v-on:click="toggleShowTop" v-show="!showTop">configure</button>
@@ -77,6 +77,14 @@ export default {
       },
       set: function (textFormat) {
         this.textFormat = textFormat
+      }
+    },
+    getStyle: {
+      get: function () {
+        return {
+          backgroundColor: this.textFormat.colorsBackground.hex,
+          color: this.textFormat.colorsText.hex
+        }
       }
     }
   }
