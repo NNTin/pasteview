@@ -2,8 +2,8 @@
   <div class="app" :style="getStyle">
 
     <top v-show="showTop" @input="onInputChild" :pastebinURL="pastebinURL" :wordCount="wordCount" :showSlider="showTop"></top>
-    <button v-on:click="toggleShowTop" v-show="!showTop">configure</button>
-    <button v-on:click="toggleShowTop" v-show="showTop">hide</button>
+    <button id="configureButton" v-on:click="toggleShowTop" v-show="!showTop">configure</button>
+    <button id="hideButton" v-on:click="toggleShowTop" v-show="showTop">hide</button>
     <textview @pastebinURLChange="onPastebinURLChange" @wordCount="onWordCount" :textFormat="textFormat"></textview>
 
   </div>
@@ -95,12 +95,25 @@ export default {
 * {
     margin: 0;
 }
+html,body {
+  height: 100%;
+}
+
+button#configureButton {
+  margin-left: 20px;
+  margin-top: 10px;
+}
+button#hideButton {
+  margin-left: 20px;
+}
+
 
 .app{
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: left;
+  height: 100%
 }
 
 
