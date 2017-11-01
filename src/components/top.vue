@@ -22,7 +22,7 @@
 			<button title="Reset settings to default" v-on:click="reset">Reset</button>
 		</div>
 
-		<!--<label><a :href="pastebinURL">{{pastebinURL}}</a></label>-->
+		<label><a :href="pastebinURL">{{pastebinURL}}</a></label>
 
 		<div id="textArea">
 			<div id="column1">
@@ -33,7 +33,6 @@
 			</div>
 	    <div id="column3">
 				<vue-slider :show="showSlider" :reverse=true :tooltip=false v-on:input="textFormatChange" :min="0" :max="35" v-model="textFormat.columnSize" :speed="0"></vue-slider>
-		    <!--<vue-slider :tooltip=false :min="65" :max="100" v-model="columnSize2" :speed="0"></vue-slider>-->
 	    </div>
 		</div>
 	</div>
@@ -42,13 +41,6 @@
 import vueSlider from 'vue-slider-component'
 import { Chrome } from 'vue-color'
 import Vue from 'vue'
-
-
-
-
-
-
-
 
 export default {
 	name: 'top',
@@ -72,9 +64,50 @@ export default {
 			textFormat: {
 				textSize: 40,
 				columnSize: 20,
-				colorsBackground: {hex: '#FFFFFF'},
-				colorsText: {hex: '#000000'}
-
+				colorsBackground: {
+					hex: '#FFFFFF',
+					hsl: {
+						h: 0,
+						s: 0,
+						l: 1,
+						a: 1
+					},
+					hsv: {
+						h: 0,
+						s: 0,
+						v: 1,
+						a: 1
+					},
+					rgba: {
+						r: 255,
+						g: 255,
+						b: 255,
+						a: 1
+					},
+					a: 1
+				},
+				colorsText: {
+					hex: '#000000',
+					hsl: {
+						h: 0,
+						s: 0,
+						l: 0,
+						a: 1
+					},
+					hsv: {
+						h: 0,
+						s: 0,
+						v: 0,
+						a: 1
+					},
+					rgba: {
+						r: 0,
+						g: 0,
+						b: 0,
+						a: 1
+					},
+					a: 1
+				}
 			}
 		}
 	},
@@ -87,19 +120,32 @@ export default {
 			localStorage.setItem('columnSize', this.textFormat.columnSize)
 			localStorage.setItem('colorsBackgroundHex', this.textFormat.colorsBackground.hex)
 			localStorage.setItem('colorsTextHex', this.textFormat.colorsText.hex)
+			console.dir(this.textFormat.colorsText.hex)
+			console.dir(this.textFormat.colorsText)
 
-			console.log(localStorage)
+
+
+			//console.log(localStorage)
  		},
 		reset: function () {
 			this.textFormat.textSize = 40
 			this.textFormat.columnSize = 20
-			this.textFormat.colorsBackground.hex = '#FFFFFF'
-			this.textFormat.colorsText.hex = '#000000'
 
+			this.textFormat.colorsBackground =
+			{
+				hex: '#FFFFFF',
+				a: 1
+			}
+			this.textFormat.colorsText =
+			{
+				hex: '#000000',
+				a: 1
+			}
 			localStorage.setItem('textSize', this.textFormat.textSize)
 			localStorage.setItem('columnSize', this.textFormat.columnSize)
 			localStorage.setItem('colorsBackgroundHex', this.textFormat.colorsBackground.hex)
 			localStorage.setItem('colorsTextHex', this.textFormat.colorsText.hex)
+
 
 
 		}
@@ -118,8 +164,16 @@ export default {
 		if(localStorage.textSize){
 			this.textFormat.textSize = localStorage.getItem('textSize')
 			this.textFormat.columnSize = localStorage.getItem('columnSize')
-			this.textFormat.colorsBackground.hex = localStorage.getItem('colorsBackgroundHex')
-			this.textFormat.colorsText.hex = localStorage.getItem('colorsTextHex')
+			this.textFormat.colorsBackground =
+			{
+				hex: localStorage.getItem('colorsBackgroundHex'),
+				a: 1
+			}
+			this.textFormat.colorsText =
+			{
+				hex: localStorage.getItem('colorsTextHex'),
+				a: 1
+			}
 		}
 	}
 }

@@ -15,8 +15,50 @@
         default: {
           textSize: -1,
           columnSize: -1,
-          colorsBackground: {hex: '#FAA3FF'},
-  				colorsText: {hex: '#B5F8EC'}
+          colorsBackground: {
+            hex: '#FFFFFF',
+            hsl: {
+              h: 0,
+              s: 0,
+              l: 1,
+              a: 1
+            },
+            hsv: {
+              h: 0,
+              s: 0,
+              v: 1,
+              a: 1
+            },
+            rgba: {
+              r: 255,
+              g: 255,
+              b: 255,
+              a: 1
+            },
+            a: 1
+          },
+  				colorsText: {
+            hex: '#000000',
+            hsl: {
+              h: 0,
+              s: 0,
+              l: 0,
+              a: 1
+            },
+            hsv: {
+              h: 0,
+              s: 0,
+              v: 0,
+              a: 1
+            },
+            rgba: {
+              r: 0,
+              g: 0,
+              b: 0,
+              a: 1
+            },
+            a: 1
+          }
         }
       }
     },

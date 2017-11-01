@@ -18,7 +18,6 @@ It only accepts pastes from pastebin **pro** accounts. (Pastes from pastebin pro
 
 * touch up the style, especially for mobile users
 * in addition to reset, add custom settings (light/dark/... mode)
-* fix [vue-color](https://xiaokaike.github.io/vue-color/) not correctly jumping when clicking reset button
 
 ## Build Setup
 
