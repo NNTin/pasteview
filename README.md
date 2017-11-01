@@ -14,10 +14,6 @@ Goal of project: Make reading pastes from Pastebin more enjoyable.
 
 It only accepts pastes from pastebin **pro** accounts. (Pastes from pastebin pro accounts have [CORS headers](https://en.wikipedia.org/wiki/Cross-origin_resource_sharing) enabled.)
 
-## Todo's:
-
-* touch up the style, especially for mobile users
-
 ## Build Setup
 
 ``` bash
