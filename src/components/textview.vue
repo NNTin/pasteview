@@ -100,6 +100,7 @@ Example usage:\n<a href="https://pastebin.com/32z9wKpi">https://pastebin.com/32z
           .then(function(response){
             if (response.status == 200){
               this.pastebinText = response.data.replace(/\n/g, "<br />");
+              this.$emit('wordCount', this.pastebinText.trim().split(/\s+/).length);
             }
             else {
               console.log('Unhandled status')

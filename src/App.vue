@@ -1,10 +1,10 @@
 <template>
   <div id="app">
 
-    <top v-show="showTop" @input="onInputChild" :pastebinURL="pastebinURL" :showSlider="showTop"></top>
+    <top v-show="showTop" @input="onInputChild" :pastebinURL="pastebinURL" :wordCount="wordCount" :showSlider="showTop"></top>
     <button v-on:click="toggleShowTop" v-show="!showTop">configure</button>
     <button v-on:click="toggleShowTop" v-show="showTop">hide</button>
-    <textview @pastebinURLChange="onPastebinURLChange" :textFormat="textFormat"></textview>
+    <textview @pastebinURLChange="onPastebinURLChange" @wordCount="onWordCount" :textFormat="textFormat"></textview>
 
   </div>
 </template>
@@ -52,6 +52,7 @@ export default {
 		return {
       textFormat: {colorsBackground: {}, colorsText: {}},
       pastebinURL: '',
+      wordCount: 0,
       showTop: false
 		}
 	},
@@ -61,6 +62,9 @@ export default {
     },
     onPastebinURLChange (value) {
       this.pastebinURL = value
+    },
+    onWordCount(value){
+      this.wordCount = value
     },
     toggleShowTop () {
       this.showTop = !this.showTop
