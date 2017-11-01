@@ -31,7 +31,6 @@
 
 			</div>
 			<div id="buttons">
-				<div>
 					<button title="Save slider and color settings" :style="getSaveButtonStyle" v-on:click="save">Save</button>
 					<button title="Reset settings to default" :style="getButtonStyle('#FFFFFF','#000000')" v-on:click="reset">Reset</button>
 					<br/>
@@ -49,7 +48,6 @@
 					<br/>
 					<button title="Set color" :style="getButtonStyle('#BAFF71','#000000')" v-on:click="setColor('#BAFF71','#000000')">Set color</button>
 					<button title="Set color" :style="getButtonStyle('#83BDFF','#000000')" v-on:click="setColor('#83BDFF','#000000')">Set color</button>
-			</div>
 		</div>
 		</div>
 
@@ -188,13 +186,14 @@ export default {
 		},
 		getButtonStyle: function (backgroundColor, textColor) {
 			return {
-				width: "48%",
+				width: "40%",
 			  color: textColor,
 			  fontSize: '12px',
 			  background: backgroundColor,
 			  padding: '10px 20px 10px 20px',
 			  border: 'solid #000000 3px',
-				marginTop: '5px'
+				marginTop: '7px',
+				marginRight: '0px'
 			}
 		}
 
@@ -219,7 +218,7 @@ export default {
 		getSaveButtonStyle: {
 			get: function () {
 				return {
-					width: "48%",
+					width: "40%",
 				  color: this.textFormat.colorsText.hex,
 				  fontSize: '12px',
 				  background: this.textFormat.colorsBackground.hex,
@@ -233,11 +232,16 @@ export default {
 </script>
 
 <style>
+
+	div#top{
+		text-align: center;
+		padding-top: 5px;
+	}
 	div#column1, div#column2, div#column3{
 		float:left;
 		width:33%;
 	}
-	div#chrome-color, div#buttons, #sliders{
+	div#chrome-color, #sliders{
 		display: inline-block;
 	}
 	a#githubmark{
@@ -253,5 +257,9 @@ export default {
 	div#textArea{
 		padding-top: 10px;
 		padding-bottom: 10px;
+	}
+	div#buttons{
+		display: inline-block;
+		width: 32%;
 	}
 </style>
