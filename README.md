@@ -29,4 +29,4 @@ npm run deploy
 
 ## Credits
 
-Thumbnail from [fictionchick on deviantart](https://fictionchick.deviantart.com/art/The-Lure-of-a-Book-328449645)
+Thumbnail made by [fictionchick on deviantart](https://fictionchick.deviantart.com/art/The-Lure-of-a-Book-328449645)
