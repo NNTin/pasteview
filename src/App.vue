@@ -4,6 +4,7 @@
     <top v-show="showTop" @input="onInputChild" :pastebinURL="pastebinURL" :wordCount="wordCount" :showSlider="showTop"></top>
     <button id="configureButton" v-on:click="toggleShowTop" v-show="!showTop">configure</button>
     <button id="hideButton" v-on:click="toggleShowTop" v-show="showTop">hide</button>
+    <!-- <textindex></textindex> -->
     <textview @pastebinURLChange="onPastebinURLChange" @wordCount="onWordCount" :textFormat="textFormat"></textview>
 
   </div>
@@ -12,7 +13,7 @@
 <script>
 import textview from './components/textview'
 import top from './components/top'
-
+// import textindex from './components/textindex'
 
 export default {
   name: 'app',
@@ -36,7 +37,7 @@ export default {
       // Facebook / Open Graph
       { property: 'og:title', content: 'PasteView' },
       // with shorthand
-      { p: 'og:image', c: 'https://i.imgur.com/N0u1eS0.png' },
+      { p: 'og:image', c: 'https://i.imgur.com/hkQ8Mo6.jpg' },
       { p: 'og:type', c: 'article' },
       { p: 'og:url', c: 'nntin.github.io/pasteview/' },
       { p: 'og:description', c: 'View pastes from Pastebin' }
@@ -46,6 +47,7 @@ export default {
   },
   components: {
     top,
+    // textindex,
     textview,
   },
   data () {
