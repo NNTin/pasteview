@@ -55,7 +55,7 @@ export default {
       textFormat: {colorsBackground: {}, colorsText: {}},
       pastebinURL: '',
       wordCount: 0,
-      showTop: true
+      showTop: false
 		}
 	},
 	methods: {
