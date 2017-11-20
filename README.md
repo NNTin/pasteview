@@ -29,4 +29,5 @@ npm run deploy
 
 ## Credits
 
-Thumbnail made by [fictionchick on deviantart](https://fictionchick.deviantart.com/art/The-Lure-of-a-Book-328449645)
+Thumbnail: [fictionchick on deviantart](https://fictionchick.deviantart.com/art/The-Lure-of-a-Book-328449645)
+Github corner template: [tholman](https://github.com/tholman/github-corners)
